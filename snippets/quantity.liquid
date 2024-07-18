@@ -1,0 +1,53 @@
+<quantity-input
+  id="Quantity-Form-{{ product_form_id }}"
+  class="quantity-wrapper"
+  data-url="{{ product.url }}"
+  data-section="{{ section.id }}"
+>
+  <label class="variant-title textSmall">{{ 'products.product.quantity.label' | t }}</label>
+  <div class="quantity-inner">
+    <button
+      type="button"
+      name="minus"
+      class="qunt-btn qunt-minus"
+      aria-label="{{ 'products.product.quantity.decrease' | t }}"
+      data-decrement-quantity
+    >
+      <span class="hidden">{{ 'products.product.quantity.decrease' | t }}</span>
+      <svg x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14">
+        <rect x="6" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0 14)"
+            width="2.1" height="14"></rect>
+      </svg>
+    </button>
+    <input
+      id="product-quantity-{{ product_form_id }}"
+      class="quantity-input"
+      type="number"
+      name="quantity"
+      min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+      {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
+        max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+      {% endif %}
+      step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+      value="1"
+      form="{{ product_form_id }}"
+      data-input-quantity
+      aria-label="{{ 'products.product.quantity.label' | t }}"
+    >
+
+    <button
+      type="button"
+      name="plus"
+      class="qunt-btn qunt-plus"
+      aria-label="{{ 'products.product.quantity.increase' | t }}"
+      data-increment-quantity
+    >
+      <span class="hidden">{{ 'products.product.quantity.increase' | t }}</span>
+      <svg x="0px" y="0px" width="14px" height="14px" viewBox="0 0 14 14">
+        <polygon
+            points="14,6 8,6 8,0 6,0 6,6 0,6 0,8 6,8 6,14 8,14 8,8 14,8 ">
+        </polygon>
+      </svg>
+    </button>
+  </div>
+</quantity-input>
